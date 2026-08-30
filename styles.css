@@ -245,8 +245,8 @@ button {
 }
 
 .hub img {
-  width: 160%;
-  height: 160%;
+  width: 96%;
+  height: 96%;
   object-fit: contain;
   transform: translateY(10%);
   filter: drop-shadow(0 5px 6px rgba(0, 0, 0, .62));
