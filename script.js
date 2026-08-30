@@ -8,24 +8,14 @@ const prizes = [
   "Ir pro crossfit",
 ];
 
-const wheelLabels = [
-  "Escadas",
-  "Caminhada",
-  "Musculação",
-  "Dança",
-  "Vôlei",
-  "Futevôlei",
-  "Crossfit",
-];
-
-const labelAdjustments = [
-  25,
-  30,
-  -30,
-  -30,
-  -40,
-  30,
-  25,
+const wheelIcons = [
+  `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 50h40M14 42h11v-8h12v-8h13M25 42v8M37 34v16M50 26v24"/></svg>`,
+  `<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="34" cy="12" r="6"/><path d="M31 22l-7 10 9 7 8 13M37 24l8 9M28 38l-8 14M38 52l10 1"/></svg>`,
+  `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 28v8M16 22v20M24 27v10M40 27v10M48 22v20M56 28v8M24 32h16"/></svg>`,
+  `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 11v31c0 5-4 9-10 9s-9-3-9-7 4-7 10-7c3 0 6 1 9 3M26 18h24v25c0 5-4 9-10 9s-9-3-9-7 4-7 10-7c3 0 6 1 9 3M26 18c8 2 16 2 24 0"/></svg>`,
+  `<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22"/><path d="M15 26c11 2 20 9 25 24M31 10c-3 13 1 25 13 36M16 40c12-2 23-9 32-21"/></svg>`,
+  `<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="44" cy="20" r="10"/><path d="M12 43c9 2 17 1 24-4M17 34l14 6 10 12M22 28l8 12M8 52h45"/></svg>`,
+  `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 18h12M24 18c0-6 3-10 8-10s8 4 8 10M20 26h24l5 24H15l5-24zM24 34c4 4 12 4 16 0"/></svg>`,
 ];
 
 const introScreen = document.querySelector("#introScreen");
@@ -45,15 +35,16 @@ let pullStart = null;
 let pullAmount = 0;
 
 function createWheelLabels() {
-  wheelLabels.forEach((label, index) => {
+  wheelIcons.forEach((icon, index) => {
     const angle = -90 + index * slice + slice / 2;
     const radians = angle * Math.PI / 180;
-    const distance = 33;
-    const x = 50 + Math.cos(radians) * distance + labelAdjustments[index] * 0.3;
+    const distance = 34;
+    const x = 50 + Math.cos(radians) * distance;
     const y = 50 + Math.sin(radians) * distance;
     const labelNode = document.createElement("div");
     labelNode.className = "slice-label";
-    labelNode.innerHTML = label;
+    labelNode.innerHTML = icon;
+    labelNode.setAttribute("aria-label", prizes[index]);
     labelNode.style.left = `${x}%`;
     labelNode.style.top = `${y}%`;
     labelNode.style.setProperty("--label-rotation", `${readableRotation(angle)}deg`);
@@ -62,9 +53,7 @@ function createWheelLabels() {
 }
 
 function readableRotation(angle) {
-  const radialAngle = angle + 90;
-  const normalized = ((radialAngle % 360) + 360) % 360;
-  return normalized > 100 && normalized < 260 ? radialAngle + 180 : radialAngle;
+  return 0;
 }
 
 function enterRoulette(event) {
