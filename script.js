@@ -9,8 +9,8 @@ const prizes = [
 ];
 
 const wheelLabels = [
-  "Subir<br>escadas",
-  "Andar no<br>condomínio",
+  "Escadas",
+  "Caminhada",
   "Musculação",
   "Dança",
   "Vôlei",
@@ -38,7 +38,7 @@ function createWheelLabels() {
   wheelLabels.forEach((label, index) => {
     const angle = -90 + index * slice + slice / 2;
     const radians = angle * Math.PI / 180;
-    const distance = 31;
+    const distance = 34;
     const x = 50 + Math.cos(radians) * distance;
     const y = 50 + Math.sin(radians) * distance;
     const labelNode = document.createElement("div");
@@ -52,8 +52,9 @@ function createWheelLabels() {
 }
 
 function readableRotation(angle) {
-  const normalized = ((angle + 90) % 360 + 360) % 360;
-  return normalized > 90 && normalized < 270 ? angle + 180 : angle;
+  const radialAngle = angle + 90;
+  const normalized = ((radialAngle % 360) + 360) % 360;
+  return normalized > 90 && normalized < 270 ? radialAngle + 180 : radialAngle;
 }
 
 function enterRoulette(event) {

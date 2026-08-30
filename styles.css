@@ -206,50 +206,45 @@ button {
 .slice-label {
   position: absolute;
   z-index: 3;
-  width: 24%;
-  min-height: 9%;
+  width: 31%;
+  min-height: 12%;
   display: grid;
   place-items: center;
   color: #fff;
-  font-family: Bungee, Anton, Impact, sans-serif;
-  font-size: clamp(.5rem, 1.35vw, 1.02rem);
-  line-height: 1.02;
+  font-family: Anton, Bungee, Impact, sans-serif;
+  font-size: clamp(.74rem, 1.75vw, 1.34rem);
+  line-height: .96;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0;
-  text-shadow: 0 3px 0 #000, 0 0 14px rgba(255, 255, 255, .3);
+  -webkit-text-stroke: .7px rgba(0, 0, 0, .8);
+  text-shadow: 0 3px 0 #000, 0 0 16px rgba(255, 255, 255, .42);
   transform: translate(-50%, -50%) rotate(var(--label-rotation));
   pointer-events: none;
 }
 
 .hub {
   position: absolute;
-  inset: 35%;
+  inset: 33%;
   z-index: 4;
   display: grid;
   place-items: center;
-  align-content: center;
   border-radius: 50%;
-  background: radial-gradient(circle at 34% 26%, #fff 0 8%, var(--hot-pink) 9% 32%, #111123 33% 100%);
+  padding: 4%;
+  background: radial-gradient(circle at 34% 26%, rgba(255,255,255,.95) 0 8%, var(--hot-pink) 9% 31%, #111123 32% 100%);
   border: clamp(5px, .9vw, 10px) solid var(--pink);
   box-shadow: 0 0 0 5px #fff, 0 18px 30px rgba(0, 0, 0, .42), inset 0 -16px 26px rgba(0, 0, 0, .38);
-  font-family: Anton, Impact, sans-serif;
-  line-height: .9;
-  text-shadow: 0 3px #000;
 }
 
-.hub span {
-  font-size: clamp(.9rem, 2vw, 1.8rem);
-}
-
-.hub strong {
-  color: var(--hot-pink);
-  font-size: clamp(1.4rem, 3.2vw, 3rem);
-  letter-spacing: 0;
+.hub img {
+  width: 122%;
+  height: 122%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, .45));
 }
 
 .lever-panel {
-  height: min(72dvh, 500px);
+  height: min(84dvh, 620px);
   display: grid;
   justify-items: center;
   align-content: center;
@@ -258,9 +253,9 @@ button {
 
 .lever-track {
   position: relative;
-  width: clamp(58px, 7vw, 80px);
+  width: clamp(64px, 7vw, 86px);
   height: 100%;
-  min-height: 270px;
+  min-height: 390px;
   border-radius: 999px;
   background: linear-gradient(90deg, #05050d, #282844 45%, #070711);
   border: 3px solid rgba(255, 255, 255, .76);
@@ -287,8 +282,8 @@ button {
   position: absolute;
   left: 50%;
   top: 18px;
-  width: clamp(78px, 9vw, 96px);
-  height: 132px;
+  width: clamp(70px, 7.5vw, 84px);
+  height: 158px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -311,21 +306,21 @@ button {
   position: absolute;
   top: 0;
   left: 50%;
-  width: clamp(76px, 8.5vw, 92px);
+  width: clamp(58px, 6.5vw, 72px);
   aspect-ratio: 1;
   transform: translateX(-50%);
   border-radius: 50%;
   background: radial-gradient(circle at 34% 26%, #fff 0 13%, #ff9bd0 14% 26%, var(--pink) 27% 68%, #8f0045 100%);
   border: 5px solid #fff;
-  box-shadow: 0 10px 0 #05050d, 0 18px 30px rgba(0, 0, 0, .42);
+  box-shadow: 0 8px 0 #05050d, 0 16px 26px rgba(0, 0, 0, .42);
 }
 
 .lever-arm {
   position: absolute;
-  top: 72px;
+  top: 60px;
   left: 50%;
-  width: 20px;
-  height: 62px;
+  width: 18px;
+  height: 98px;
   transform: translateX(-50%);
   border-radius: 999px;
   background: linear-gradient(90deg, #fff, #d8d8ea 45%, #81819a);
@@ -419,8 +414,8 @@ button {
 
   .lever-panel {
     width: min(96vw, 420px);
-    height: 82px;
-    min-height: 82px;
+    height: 106px;
+    min-height: 106px;
     grid-template-columns: 1fr auto;
     align-content: center;
     align-items: center;
@@ -429,8 +424,8 @@ button {
 
   .lever-track {
     width: 100%;
-    height: 66px;
-    min-height: 66px;
+    height: 88px;
+    min-height: 88px;
   }
 
   .lever-track::before {
@@ -450,31 +445,31 @@ button {
   .lever {
     top: 50%;
     left: 18px;
-    width: 126px;
-    height: 78px;
+    width: 128px;
+    height: 88px;
     transform: translateY(-50%) translateX(var(--pull, 0px));
   }
 
   .lever-knob {
-    width: 70px;
+    width: 58px;
     top: 50%;
-    left: 35px;
+    left: 29px;
     transform: translateY(-50%);
     border-width: 4px;
   }
 
   .lever-arm {
     top: 50%;
-    left: 74px;
-    width: 56px;
-    height: 16px;
+    left: 58px;
+    width: 72px;
+    height: 15px;
     transform: translateY(-50%);
   }
 
   .slice-label {
-    width: 23%;
-    font-size: clamp(.42rem, 2.15vw, .75rem);
-    line-height: 1;
+    width: 29%;
+    font-size: clamp(.56rem, 2.8vw, .95rem);
+    line-height: .95;
   }
 
   .result-strip {
@@ -494,7 +489,7 @@ button {
   }
 
   .hub {
-    inset: 36.5%;
+    inset: 34.5%;
   }
 
   .result-strip span {
