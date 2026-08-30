@@ -8,6 +8,19 @@ const prizes = [
   "Ir pro crossfit",
 ];
 
+const wheelLabels = [
+  "Subir<br>escadas",
+  "Andar no<br>condomínio",
+  "Musculação",
+  "Dança",
+  "Vôlei",
+  "Futevôlei",
+  "Crossfit",
+];
+
+const introScreen = document.querySelector("#introScreen");
+const rouletteScreen = document.querySelector("#rouletteScreen");
+const logoStart = document.querySelector("#logoStart");
 const wheel = document.querySelector("#wheel");
 const lever = document.querySelector("#lever");
 const spinButton = document.querySelector("#spinButton");
@@ -20,6 +33,33 @@ let isSpinning = false;
 let audio;
 let pullStart = null;
 let pullAmount = 0;
+
+function createWheelLabels() {
+  wheelLabels.forEach((label, index) => {
+    const angle = -90 + index * slice + slice / 2;
+    const radians = angle * Math.PI / 180;
+    const distance = 31;
+    const x = 50 + Math.cos(radians) * distance;
+    const y = 50 + Math.sin(radians) * distance;
+    const labelNode = document.createElement("div");
+    labelNode.className = "slice-label";
+    labelNode.innerHTML = label;
+    labelNode.style.left = `${x}%`;
+    labelNode.style.top = `${y}%`;
+    labelNode.style.setProperty("--label-rotation", `${readableRotation(angle)}deg`);
+    wheel.appendChild(labelNode);
+  });
+}
+
+function readableRotation(angle) {
+  const normalized = ((angle + 90) % 360 + 360) % 360;
+  return normalized > 90 && normalized < 270 ? angle + 180 : angle;
+}
+
+function enterRoulette() {
+  introScreen.hidden = true;
+  rouletteScreen.hidden = false;
+}
 
 function createAudio() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -175,8 +215,12 @@ function finishSpin(index) {
   isSpinning = false;
 }
 
+function isMobileLayout() {
+  return window.matchMedia("(max-width: 760px)").matches;
+}
+
 function maxPullDistance() {
-  return window.matchMedia("(max-width: 820px)").matches ? 180 : 245;
+  return isMobileLayout() ? Math.min(210, window.innerWidth * 0.46) : Math.min(245, window.innerHeight * 0.36);
 }
 
 function setPull(amount) {
@@ -192,13 +236,15 @@ function releaseLever() {
   if (shouldSpin) spin();
 }
 
+logoStart.addEventListener("click", enterRoulette);
+
 lever.addEventListener("pointerdown", (event) => {
   if (isSpinning) return;
   lever.setPointerCapture(event.pointerId);
   pullStart = {
     x: event.clientX,
     y: event.clientY,
-    horizontal: window.matchMedia("(max-width: 820px)").matches,
+    horizontal: isMobileLayout(),
   };
 });
 
@@ -220,3 +266,4 @@ lever.addEventListener("pointercancel", () => {
 });
 
 spinButton.addEventListener("click", spin);
+createWheelLabels();

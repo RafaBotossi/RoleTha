@@ -2,38 +2,28 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>RoleTHA do Exercício</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main class="stage">
-      <header class="brand">
-        <img src="Artes/logo.png" alt="RoleTHA do Exercício" class="logo">
-      </header>
+    <main class="app">
+      <section class="intro-screen" id="introScreen" aria-label="Tela inicial">
+        <button class="logo-start" id="logoStart" type="button" aria-label="Abrir a roleta">
+          <img src="Artes/logo.png" alt="RoleTHA do Exercício">
+        </button>
+      </section>
 
-      <section class="game" aria-label="Roleta da sorte de exercícios">
-        <div class="result-card" id="resultCard" aria-live="polite">
-          <span class="result-kicker">Hoje caiu</span>
-          <strong id="resultText">Puxe a manopla</strong>
-        </div>
-
+      <section class="roulette-screen" id="rouletteScreen" aria-label="Roleta da sorte de exercícios" hidden>
         <div class="machine">
-          <div class="wheel-wrap">
+          <div class="wheel-zone">
             <div class="selector" aria-hidden="true"></div>
             <div class="wheel-shadow" aria-hidden="true"></div>
             <div class="wheel" id="wheel">
               <div class="wheel-glass" aria-hidden="true"></div>
-              <div class="slice-label label-1">Subir<br>escadas</div>
-              <div class="slice-label label-2">Andar no<br>condomínio</div>
-              <div class="slice-label label-3">Musculação</div>
-              <div class="slice-label label-4">Dança</div>
-              <div class="slice-label label-5">Vôlei</div>
-              <div class="slice-label label-6">Futevôlei</div>
-              <div class="slice-label label-7">Crossfit</div>
               <div class="hub">
                 <span>Role</span>
                 <strong>THA</strong>
@@ -50,6 +40,11 @@
             </div>
             <button class="spin-button" id="spinButton" type="button">Girar</button>
           </aside>
+        </div>
+
+        <div class="result-strip" id="resultCard" aria-live="polite">
+          <span>Hoje caiu</span>
+          <strong id="resultText">Puxe a manopla</strong>
         </div>
       </section>
     </main>
