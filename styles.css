@@ -21,6 +21,10 @@ body {
   overflow: hidden;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   color: var(--white);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -81,10 +85,6 @@ button {
   display: grid;
   place-items: center;
   padding: clamp(.55rem, 1.8vw, 1.1rem);
-}
-
-.roulette-screen[hidden] {
-  display: none;
 }
 
 .machine {

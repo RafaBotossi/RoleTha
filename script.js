@@ -56,9 +56,20 @@ function readableRotation(angle) {
   return normalized > 90 && normalized < 270 ? angle + 180 : angle;
 }
 
-function enterRoulette() {
+function enterRoulette(event) {
+  if (event) {
+    event.preventDefault();
+  }
+
+  if (!rouletteScreen.hidden) {
+    return;
+  }
+
   introScreen.hidden = true;
   rouletteScreen.hidden = false;
+  introScreen.style.display = "none";
+  rouletteScreen.style.display = "grid";
+  document.body.classList.add("roulette-open");
 }
 
 function createAudio() {
@@ -237,6 +248,9 @@ function releaseLever() {
 }
 
 logoStart.addEventListener("click", enterRoulette);
+logoStart.addEventListener("pointerup", enterRoulette);
+introScreen.addEventListener("click", enterRoulette);
+introScreen.addEventListener("touchend", enterRoulette, { passive: false });
 
 lever.addEventListener("pointerdown", (event) => {
   if (isSpinning) return;
