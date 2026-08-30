@@ -227,7 +227,7 @@ button {
   top: 50%;
   left: 50%;
   z-index: 6;
-  width: 28%;
+  width: 31%;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -239,10 +239,10 @@ button {
 }
 
 .hub img {
-  width: 160%;
-  height: 160%;
+  width: 100%;
+  height: auto;
   object-fit: contain;
-  transform: translateY(-8%);
+  transform: translateY(0);
   filter: drop-shadow(0 5px 6px rgba(0, 0, 0, .62));
 }
 
@@ -486,7 +486,7 @@ button {
   }
 
   .hub {
-    width: 30%;
+    width: 34%;
   }
 
   .result-strip span {
