@@ -18,6 +18,16 @@ const wheelLabels = [
   "Crossfit",
 ];
 
+const labelAdjustments = [
+  25,
+  30,
+  -30,
+  -30,
+  -40,
+  30,
+  25,
+];
+
 const introScreen = document.querySelector("#introScreen");
 const rouletteScreen = document.querySelector("#rouletteScreen");
 const logoStart = document.querySelector("#logoStart");
@@ -39,7 +49,7 @@ function createWheelLabels() {
     const angle = -90 + index * slice + slice / 2;
     const radians = angle * Math.PI / 180;
     const distance = 33;
-    const x = 50 + Math.cos(radians) * distance;
+    const x = 50 + Math.cos(radians) * distance + labelAdjustments[index] * 0.3;
     const y = 50 + Math.sin(radians) * distance;
     const labelNode = document.createElement("div");
     labelNode.className = "slice-label";

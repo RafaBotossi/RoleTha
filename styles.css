@@ -239,10 +239,10 @@ button {
 }
 
 .hub img {
-  width: 100%;
-  height: auto;
+  width: 160%;
+  height: 160%;
   object-fit: contain;
-  transform: translateY(0);
+  transform: translateY(10%);
   filter: drop-shadow(0 5px 6px rgba(0, 0, 0, .62));
 }
 
