@@ -28,6 +28,7 @@ const resultCard = document.querySelector("#resultCard");
 const resultText = document.querySelector("#resultText");
 
 const slice = 360 / prizes.length;
+const visibleGuideGap = 360 / (prizes.length * 2);
 let currentRotation = 0;
 let isSpinning = false;
 let audio;
@@ -36,24 +37,30 @@ let pullAmount = 0;
 
 function createWheelLabels() {
   wheelIcons.forEach((icon, index) => {
-    const angle = -90 + index * slice + slice / 2;
-    const radians = angle * Math.PI / 180;
-    const distance = 34;
-    const x = 50 + Math.cos(radians) * distance;
-    const y = 50 + Math.sin(radians) * distance;
+    const angle = middleAngleBetweenVisibleGuides(index);
     const labelNode = document.createElement("div");
     labelNode.className = "slice-label";
     labelNode.innerHTML = icon;
     labelNode.setAttribute("aria-label", prizes[index]);
-    labelNode.style.left = `${x}%`;
-    labelNode.style.top = `${y}%`;
-    labelNode.style.setProperty("--label-rotation", `${readableRotation(angle)}deg`);
+    labelNode.style.setProperty("--icon-angle", `${cssAngle(angle)}deg`);
     wheel.appendChild(labelNode);
   });
 }
 
-function readableRotation(angle) {
-  return 0;
+function sliceBoundaryAngle(index) {
+  return -90 + index * slice;
+}
+
+function sliceCenterAngle(index) {
+  return sliceBoundaryAngle(index) + slice / 2;
+}
+
+function middleAngleBetweenVisibleGuides(index) {
+  return sliceBoundaryAngle(index) - visibleGuideGap / 2;
+}
+
+function cssAngle(angle) {
+  return 90 - angle;
 }
 
 function enterRoulette(event) {
