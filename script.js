@@ -38,7 +38,7 @@ function createWheelLabels() {
   wheelLabels.forEach((label, index) => {
     const angle = -90 + index * slice + slice / 2;
     const radians = angle * Math.PI / 180;
-    const distance = 34;
+    const distance = 32;
     const x = 50 + Math.cos(radians) * distance;
     const y = 50 + Math.sin(radians) * distance;
     const labelNode = document.createElement("div");
@@ -52,9 +52,7 @@ function createWheelLabels() {
 }
 
 function readableRotation(angle) {
-  const radialAngle = angle + 90;
-  const normalized = ((radialAngle % 360) + 360) % 360;
-  return normalized > 90 && normalized < 270 ? radialAngle + 180 : radialAngle;
+  return 0;
 }
 
 function enterRoulette(event) {
