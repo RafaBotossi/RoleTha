@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RoleTHA do Exercício</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="stage">
+      <header class="brand">
+        <img src="Artes/logo.png" alt="RoleTHA do Exercício" class="logo">
+      </header>
+
+      <section class="game" aria-label="Roleta da sorte de exercícios">
+        <div class="result-card" id="resultCard" aria-live="polite">
+          <span class="result-kicker">Hoje caiu</span>
+          <strong id="resultText">Puxe a manopla</strong>
+        </div>
+
+        <div class="machine">
+          <div class="wheel-wrap">
+            <div class="selector" aria-hidden="true"></div>
+            <div class="wheel-shadow" aria-hidden="true"></div>
+            <div class="wheel" id="wheel">
+              <div class="wheel-glass" aria-hidden="true"></div>
+              <div class="slice-label label-1">Subir<br>escadas</div>
+              <div class="slice-label label-2">Andar no<br>condomínio</div>
+              <div class="slice-label label-3">Musculação</div>
+              <div class="slice-label label-4">Dança</div>
+              <div class="slice-label label-5">Vôlei</div>
+              <div class="slice-label label-6">Futevôlei</div>
+              <div class="slice-label label-7">Crossfit</div>
+              <div class="hub">
+                <span>Role</span>
+                <strong>THA</strong>
+              </div>
+            </div>
+          </div>
+
+          <aside class="lever-panel" aria-label="Manopla da roleta">
+            <div class="lever-track">
+              <button class="lever" id="lever" type="button" aria-label="Puxar manopla para girar">
+                <span class="lever-knob"></span>
+                <span class="lever-arm"></span>
+              </button>
+            </div>
+            <button class="spin-button" id="spinButton" type="button">Girar</button>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
