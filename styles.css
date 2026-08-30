@@ -43,6 +43,7 @@ button {
 .intro-screen,
 .roulette-screen {
   width: 100%;
+  height: 100vh;
   height: 100dvh;
 }
 
@@ -89,6 +90,7 @@ button {
 
 .machine {
   width: min(1180px, 100%);
+  height: calc(100vh - clamp(.55rem, 1.8vw, 1.1rem) * 2);
   height: calc(100dvh - clamp(.55rem, 1.8vw, 1.1rem) * 2);
   display: grid;
   grid-template-columns: minmax(0, var(--wheel-size)) clamp(84px, 11vw, 150px);
@@ -182,6 +184,7 @@ button {
   inset: -1.3%;
   border-radius: 50%;
   background: repeating-conic-gradient(from -90deg, #fff 0deg 3deg, transparent 3deg 25.714deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 88%, #000 88.4% 100%);
   mask: radial-gradient(circle, transparent 0 88%, #000 88.4% 100%);
   opacity: .9;
   pointer-events: none;
@@ -218,8 +221,8 @@ button {
   transform:
     translate(-50%, -50%)
     rotate(var(--icon-angle))
-    translateY(calc(var(--wheel-size) * -.29))
-    rotate(calc(var(--icon-angle) * -1));
+    translateY(var(--icon-offset, calc(var(--wheel-size) * -.29)))
+    rotate(var(--icon-angle-reverse));
   pointer-events: none;
 }
 
@@ -372,6 +375,7 @@ button {
   background: rgba(8, 8, 23, .72);
   box-shadow: 0 16px 38px rgba(0, 0, 0, .3), inset 0 1px rgba(255, 255, 255, .1);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .result-strip span {
@@ -405,7 +409,7 @@ button {
 
 @media (max-width: 760px) {
   :root {
-    --wheel-size: min(70dvh, 94vw);
+    --wheel-size: min(58dvh, 84vw);
   }
 
   .roulette-screen {
@@ -414,60 +418,63 @@ button {
   }
 
   .machine {
+    height: calc(100vh - .9rem);
     height: calc(100dvh - .9rem);
     grid-template-columns: 1fr;
-    grid-template-rows: var(--wheel-size) auto;
+    grid-template-rows: var(--wheel-size) minmax(190px, 29dvh);
     align-content: start;
     justify-items: center;
-    gap: .25rem;
+    gap: .7rem;
   }
 
   .lever-panel {
-    width: min(96vw, 420px);
-    height: 106px;
-    min-height: 106px;
-    grid-template-columns: 1fr auto;
+    width: min(44vw, 160px);
+    height: min(29dvh, 230px);
+    min-height: 190px;
+    grid-template-columns: 1fr;
+    justify-self: center;
+    justify-items: center;
     align-content: center;
     align-items: center;
     gap: .6rem;
   }
 
   .lever-track {
-    width: 100%;
-    height: 88px;
-    min-height: 88px;
+    justify-self: center;
+    width: 64px;
+    height: 100%;
+    min-height: 150px;
     background:
-      linear-gradient(180deg, transparent 0 37%, #fff 37% 43%, #d6d8e4 43% 54%, #797b8f 54% 62%, transparent 62% 100%),
+      linear-gradient(90deg, transparent 0 37%, #fff 37% 43%, #d6d8e4 43% 54%, #797b8f 54% 62%, transparent 62% 100%),
       linear-gradient(90deg, #05050d, #282844 45%, #070711);
   }
 
   .lever-track::before {
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .lever-track::after {
-    top: 50%;
-    left: auto;
-    right: 12px;
-    bottom: auto;
-    transform: translateY(-50%);
+    left: 50%;
+    right: auto;
+    bottom: 10px;
+    transform: translateX(-50%);
   }
 
   .lever {
-    top: 50%;
-    left: 18px;
-    width: 128px;
+    top: 16px;
+    left: 50%;
+    width: 70px;
     height: 58px;
-    transform: translateY(-50%) translateX(var(--pull, 0px));
+    transform: translateX(-50%) translateY(var(--pull, 0px));
   }
 
   .lever-knob {
     width: 58px;
-    top: 50%;
-    left: 29px;
-    transform: translateY(-50%);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     border-width: 4px;
   }
 

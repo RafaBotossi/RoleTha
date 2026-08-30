@@ -29,6 +29,7 @@ const resultText = document.querySelector("#resultText");
 
 const slice = 360 / prizes.length;
 const visibleGuideGap = 360 / (prizes.length * 2);
+const iconRadiusRatio = 0.29;
 let currentRotation = 0;
 let isSpinning = false;
 let audio;
@@ -43,8 +44,11 @@ function createWheelLabels() {
     labelNode.innerHTML = icon;
     labelNode.setAttribute("aria-label", prizes[index]);
     labelNode.style.setProperty("--icon-angle", `${cssAngle(angle)}deg`);
+    labelNode.style.setProperty("--icon-angle-reverse", `${cssAngle(angle) * -1}deg`);
     wheel.appendChild(labelNode);
   });
+
+  updateIconRadius();
 }
 
 function sliceBoundaryAngle(index) {
@@ -63,6 +67,14 @@ function cssAngle(angle) {
   return 90 - angle;
 }
 
+function updateIconRadius() {
+  const wheelSize = wheel.getBoundingClientRect().width || Math.min(window.innerWidth, window.innerHeight);
+  const iconOffset = wheelSize * iconRadiusRatio * -1;
+  wheel.querySelectorAll(".slice-label").forEach((labelNode) => {
+    labelNode.style.setProperty("--icon-offset", `${iconOffset}px`);
+  });
+}
+
 function enterRoulette(event) {
   if (event) {
     event.preventDefault();
@@ -77,6 +89,8 @@ function enterRoulette(event) {
   introScreen.style.display = "none";
   rouletteScreen.style.display = "grid";
   document.body.classList.add("roulette-open");
+  updateIconRadius();
+  requestAnimationFrame(updateIconRadius);
 }
 
 function createAudio() {
@@ -234,11 +248,11 @@ function finishSpin(index) {
 }
 
 function isMobileLayout() {
-  return window.matchMedia("(max-width: 760px)").matches;
+  return false;
 }
 
 function maxPullDistance() {
-  return isMobileLayout() ? Math.min(210, window.innerWidth * 0.46) : Math.min(245, window.innerHeight * 0.36);
+  return Math.min(170, window.innerHeight * 0.2);
 }
 
 function setPull(amount) {
@@ -287,4 +301,5 @@ lever.addEventListener("pointercancel", () => {
 });
 
 spinButton.addEventListener("click", spin);
+window.addEventListener("resize", updateIconRadius);
 createWheelLabels();
